@@ -97,11 +97,30 @@ design-system showcase landing page.
 - Notifications + email digests
 - Premium tier gating
 
+## 5c. Iteration 3 — Email/Password Auth (Feb 2026)
+
+- ✅ Backend `/api/auth/register`, `/api/auth/login`, `/api/auth/me`
+  (PyJWT HS256, 30-day TTL, bcrypt rounds=12, Pydantic EmailStr).
+- ✅ React `AuthProvider` (token persisted in `localStorage` key
+  `careerverse:auth`, axios `Authorization: Bearer` header, `/auth/me`
+  re-validation on reload, `signIn`/`signUp`/`signOut`).
+- ✅ `/login` and `/register` pages with inline validation + error
+  surfaces (`login-error`, `register-error` data-testids).
+- ✅ Navbar reflects signed-in state ("Hi, <name>" + Sign out).
+- ✅ Seeded test user `test.student@careerverse.io / Test@1234`
+  documented in `/app/memory/test_credentials.md`.
+- ✅ Testing agent iteration_5: 100% backend (11/11 pytest) +
+  100% frontend (12/12 Playwright assertions). No defects.
+
 ## 7. Next action items
 
-1. Pick AI provider for Career Mentor (Claude Sonnet 4.6 / GPT 5.2 /
-   Gemini 3) and obtain Emergent LLM key.
-2. Decide on first feature batch (suggested: Classes → Streams → Careers
-   read-only flow with mock seed data).
-3. Confirm authentication priority (email/password first vs Google first).
-4. Source real career & scholarship data (or content partner).
+1. **AI Career Mentor (P0)** — pick model (Claude Sonnet 4.6 / GPT 5.2 /
+   Gemini 3 Pro) → integrate via `EMERGENT_LLM_KEY` with streaming chat
+   UI + MongoDB chat history.
+2. **Emergent Google Auth (P1)** — add Google social login alongside
+   email/password.
+3. **Save Career / Bookmark (P1)** — now unblocked by auth; persist
+   bookmarks on the user document.
+4. **Save Career DNA result to profile (P1)**.
+5. **Student Dashboard / Profile page (P2)**.
+6. Source real career & scholarship data (or content partner).

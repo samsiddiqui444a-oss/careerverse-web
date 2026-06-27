@@ -18,7 +18,7 @@ export default function StreamExplorer() {
             />
             {isLoading && (
                 <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {Array.from({ length: 6 }).map((_, i) => <LoadingSkeleton key={i} className="h-48" />)}
+                    {Array.from({ length: 6 }).map((_, i) => <LoadingSkeleton key={`stream-skel-${i}`} className="h-48" />)}
                 </div>
             )}
             {isError && <div className="mt-12"><ErrorState description="Could not load streams." /></div>}

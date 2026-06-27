@@ -18,7 +18,7 @@ export default function ClassExplorer() {
             {isLoading && (
                 <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
                     {Array.from({ length: 6 }).map((_, i) => (
-                        <LoadingSkeleton key={i} className="h-40" />
+                        <LoadingSkeleton key={`class-skel-${i}`} className="h-40" />
                     ))}
                 </div>
             )}

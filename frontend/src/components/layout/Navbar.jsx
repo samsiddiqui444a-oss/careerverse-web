@@ -5,11 +5,13 @@ import { PRIMARY_NAV } from "@/constants/navigation";
 import { ROUTES } from "@/constants/routes";
 import { NAV } from "@/constants/testIds";
 import { ThemeToggle } from "@/components/common/ThemeToggle";
+import { useAuth } from "@/hooks/useAuth";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
+    const auth = useAuth();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 8);
@@ -68,20 +70,28 @@ export function Navbar() {
                 </nav>
 
                 <div className="flex items-center gap-2">
-                    <Link
-                        to={ROUTES.login}
-                        data-testid={NAV.ctaLogin}
-                        className="cv-focus hidden rounded-full px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary md:inline-flex"
-                    >
-                        Sign in
-                    </Link>
-                    <Link
-                        to={ROUTES.register}
-                        data-testid={NAV.ctaRegister}
-                        className="cv-focus hidden rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:scale-[1.02] md:inline-flex"
-                    >
-                        Get started
-                    </Link>
+                    {auth?.status === "authed" && auth.user ? (
+                        <>
+                            <span data-testid="navbar-user-name" className="hidden md:inline text-sm font-medium text-foreground/90">
+                                Hi, {auth.user.name.split(" ")[0]}
+                            </span>
+                            <button type="button" onClick={auth.signOut} data-testid="navbar-signout"
+                                className="cv-focus hidden md:inline-flex rounded-full border border-border bg-card px-4 py-2 text-sm font-medium hover:bg-secondary">
+                                Sign out
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to={ROUTES.login} data-testid={NAV.ctaLogin}
+                                className="cv-focus hidden rounded-full px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary md:inline-flex">
+                                Sign in
+                            </Link>
+                            <Link to={ROUTES.register} data-testid={NAV.ctaRegister}
+                                className="cv-focus hidden rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-transform hover:scale-[1.02] md:inline-flex">
+                                Get started
+                            </Link>
+                        </>
+                    )}
                     <ThemeToggle />
                     <button
                         type="button"

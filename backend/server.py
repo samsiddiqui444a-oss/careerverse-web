@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT_DIR))
 load_dotenv(ROOT_DIR / '.env')
 
 from routers.content import build_router as build_content_router  # noqa: E402
+from routers.auth import build_auth_router  # noqa: E402
 
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
@@ -81,6 +82,7 @@ async def get_status_checks():
 
 
 api_router.include_router(build_content_router(db))
+api_router.include_router(build_auth_router(db))
 app.include_router(api_router)
 
 app.add_middleware(

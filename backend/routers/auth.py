@@ -1,10 +1,11 @@
-"""Authentication router — register, login, me. JWT in Authorization Bearer header."""
+"""Authentication router — register, login, me, google exchange. JWT in Authorization Bearer header."""
 import os
 import re
 import uuid
 import bcrypt
 import jwt
 import logging
+import httpx
 from datetime import datetime, timezone, timedelta
 from fastapi import APIRouter, Depends, HTTPException, Header
 from pydantic import BaseModel, EmailStr, Field
@@ -18,6 +19,7 @@ JWT_TTL_DAYS = 30
 DEFAULT_ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "admin@careerverse.io").lower()
 DEFAULT_ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "Admin@1234")
 DEFAULT_ADMIN_NAME = os.environ.get("ADMIN_NAME", "CareerVerse Admin")
+EMERGENT_AUTH_URL = "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data"
 
 router = APIRouter()
 

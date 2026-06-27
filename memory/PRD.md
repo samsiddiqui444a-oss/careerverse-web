@@ -112,11 +112,46 @@ design-system showcase landing page.
 - ✅ Testing agent iteration_5: 100% backend (11/11 pytest) +
   100% frontend (12/12 Playwright assertions). No defects.
 
+## 5d. Iteration 4 — AI Career Mentor (Feb 2026) ⚠ Budget gated
+
+- ✅ Backend `routers/mentor.py`: SSE streaming via
+  `emergentintegrations.LlmChat` → `anthropic / claude-sonnet-4-6`.
+  Endpoints: POST/GET/DELETE `/api/mentor/sessions`,
+  GET `/sessions/{id}/messages`, POST `/sessions/{id}/stream`.
+  MongoDB collections `mentor_sessions`, `mentor_messages` keyed to user.
+- ✅ React `/ai-mentor` page: auth gate, sidebar (sessions list +
+  create/delete), streaming bubble, suggestion chips, friendly error
+  on LLM budget-exhausted.
+- ⚠ Live streaming verified to surface SSE frames + persist messages,
+  but the Emergent Universal LLM Key currently has **zero budget**
+  (`Max budget: 0.0`) so Claude does not actually reply. **User must
+  top up at Profile → Universal Key → Add Balance** to enable replies.
+
+## 5e. Iteration 5 — Admin Panel (Feb 2026) ✅
+
+- ✅ Role-based access: `users.role ∈ {user, admin}`. Admin auto-seeded
+  on backend startup via `ensure_admin_seeded()`.
+- ✅ Audit fields on user doc: `lastLoginAt`, `bannedAt`, `deletedAt`
+  (ISO strings or null). Login enforces `bannedAt` (403) and
+  `deletedAt` (401).
+- ✅ Backend `routers/admin.py`:
+  - `GET    /api/admin/users` (search q, include_deleted, limit)
+  - `GET    /api/admin/users/{uid}` (detail + recent mentor sessions)
+  - `PATCH  /api/admin/users/{uid}/ban` (toggle, with self/other-admin
+    guards)
+  - `DELETE /api/admin/users/{uid}` (soft delete with same guards)
+  - `GET    /api/admin/stats`
+- ✅ React `/admin` page (auth + role gated client-side, server-side
+  re-checked): stats cards, search + Include-deleted toggle, table,
+  row actions (view/ban/delete), full-detail Drawer with activity.
+  Navbar `Admin` link visible only for admins.
+- ✅ Testing agent iteration_6: 100% backend (16/16 pytest) +
+  100% frontend (16/16 Playwright assertions). No defects.
+
 ## 7. Next action items
 
-1. **AI Career Mentor (P0)** — pick model (Claude Sonnet 4.6 / GPT 5.2 /
-   Gemini 3 Pro) → integrate via `EMERGENT_LLM_KEY` with streaming chat
-   UI + MongoDB chat history.
+1. **Top up Emergent LLM Key** (Profile → Universal Key → Add Balance)
+   to enable live AI Mentor streaming. Code path already verified PASS.
 2. **Emergent Google Auth (P1)** — add Google social login alongside
    email/password.
 3. **Save Career / Bookmark (P1)** — now unblocked by auth; persist

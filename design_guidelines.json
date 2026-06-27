@@ -1,0 +1,123 @@
+{
+  "brand": {
+    "name": "CareerVerse",
+    "theme": "Both Light & Dark (Equally supported)",
+    "archetype": "Premium Ed-Tech / High-Contrast Swiss + Computational Calm",
+    "core_concept": "Discovery, Navigation, Trust, AI-Empowerment",
+    "vibe": "Professional, premium, uncluttered, forward-looking, student-friendly but mature"
+  },
+  "colors": {
+    "light": {
+      "background": "#F7F8FA",
+      "surface": "#FFFFFF",
+      "surface_secondary": "#F1F5F9",
+      "primary": "#0F172A",
+      "primary_foreground": "#FFFFFF",
+      "accent_ai": "#0D9488",
+      "accent_discovery": "#EA580C",
+      "border": "#E2E8F0",
+      "text_primary": "#0F172A",
+      "text_secondary": "#64748B"
+    },
+    "dark": {
+      "background": "#070B14",
+      "surface": "#111827",
+      "surface_secondary": "#1F2937",
+      "primary": "#FFFFFF",
+      "primary_foreground": "#0F172A",
+      "accent_ai": "#2DD4BF",
+      "accent_discovery": "#F97316",
+      "border": "#374151",
+      "text_primary": "#F8FAFC",
+      "text_secondary": "#94A3B8"
+    }
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Outfit, sans-serif",
+      "body": "Plus Jakarta Sans, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "scale": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight",
+      "h2": "text-3xl sm:text-4xl font-bold tracking-tight",
+      "h3": "text-2xl sm:text-3xl font-semibold tracking-tight",
+      "h4": "text-xl font-semibold",
+      "body_lg": "text-lg leading-relaxed",
+      "body_base": "text-base leading-relaxed",
+      "body_sm": "text-sm leading-normal",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em]"
+    }
+  },
+  "layout_and_spacing": {
+    "philosophy": "Generous Spacing, Bento Grid for Complex Data, Optical Alignment",
+    "bento_grid": "grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8",
+    "container_padding": "px-4 sm:px-6 lg:px-8",
+    "section_spacing": "py-16 md:py-24 lg:py-32",
+    "card_padding": "p-6 sm:p-8",
+    "border_radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-full",
+      "badge": "rounded-full",
+      "input": "rounded-xl"
+    }
+  },
+  "surfaces_and_shadows": {
+    "light": {
+      "card_shadow": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "glass": "bg-white/80 backdrop-blur-xl border border-slate-200/50"
+    },
+    "dark": {
+      "card_shadow": "shadow-[0_8px_30px_rgb(0,0,0,0.12)]",
+      "glass": "bg-[#111827]/80 backdrop-blur-xl border border-white/10"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:scale-[1.02] transition-transform duration-200 font-semibold px-6 py-3 rounded-full flex items-center justify-center",
+      "secondary": "bg-surface_secondary text-text_primary hover:bg-border transition-colors duration-200 font-medium px-6 py-3 rounded-full flex items-center justify-center",
+      "ai_action": "bg-accent_ai/10 text-accent_ai border border-accent_ai/20 hover:bg-accent_ai hover:text-white transition-all duration-200 font-medium px-6 py-3 rounded-full shadow-[0_0_15px_rgba(45,212,191,0.2)] flex items-center justify-center"
+    },
+    "cards": {
+      "career_card": "relative overflow-hidden rounded-2xl bg-surface border border-border p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col gap-4",
+      "bento_item": "flex flex-col rounded-2xl bg-surface border border-border p-6 h-full shadow-sm hover:shadow-md transition-shadow"
+    },
+    "badges": {
+      "default": "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-surface_secondary text-text_secondary",
+      "ai_insight": "inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-accent_ai/10 text-accent_ai border border-accent_ai/20"
+    },
+    "inputs": "w-full rounded-xl border border-border bg-surface px-4 py-3 text-text_primary focus:outline-none focus:ring-2 focus:ring-accent_ai/50 transition-all placeholder:text-text_secondary/60"
+  },
+  "media": [
+    {
+      "category": "hero_background",
+      "url": "https://images.unsplash.com/photo-1604177091072-b7b677a077f6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxpbmRpYW4lMjBzdHVkZW50JTIwbW9kZXJuJTIwc3R1ZHl8ZW58MHx8fHwxNzgyNTIzMDI5fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Modern student engaged in study. Use for hero sections or landing page visual anchors. Requires gradient overlay for text readability."
+    },
+    {
+      "category": "ai_abstract_feature",
+      "url": "https://images.unsplash.com/photo-1673861561475-e0415df68554?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMGdsYXNzbW9ycGhpc218ZW58MHx8fHwxNzgyNTIzMDI5fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Abstract glass blocks. Perfect for AI Mentor, Career DNA Test, or tech-forward feature backgrounds."
+    },
+    {
+      "category": "career_path_visual",
+      "url": "https://images.unsplash.com/photo-1673329113582-8a6e57fb36dd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHw0fHxjYXJlZXIlMjBwYXRoJTIwbmF2aWdhdGlvbnxlbnwwfHx8fDE3ODI1MjMwMzB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Yellow directional path on the road. Conceptual placeholder for Stream Explorer or Roadmaps section."
+    }
+  ],
+  "accessibility_and_testing": {
+    "focus_states": "All interactive elements must feature clear focus rings (e.g., focus:ring-2 focus:ring-primary focus:ring-offset-2).",
+    "contrast": "Ensure text contrast meets WCAG AA standards. Pay special attention to AI accent teal/coral on light/dark backgrounds.",
+    "testing_attributes": "All buttons, links, and forms MUST include a data-testid attribute formatted in kebab-case reflecting the role (e.g., data-testid='explore-streams-btn')."
+  },
+  "instructions_to_main_agent": [
+    "Load fonts from Google Fonts: 'Outfit' (weights 400,600,700) for Headings, 'Plus Jakarta Sans' (weights 400,500,600) for Body.",
+    "Set up Tailwind CSS variables mapping to the provided light/dark colors. Use 'dark:' variant extensively.",
+    "Build the Design System Showcase landing page at the root route ('/'). This page must explicitly render the typography scale, color palette swatches, button variants, badge styles, inputs, and example bento cards.",
+    "Include a global Navbar with 'CareerVerse' branding and a Light/Dark toggle. Ensure it uses the 'glass' surface style on scroll.",
+    "Construct reusable components (Career Cards, Stream Cards) strictly following the specified border_radius and surfaces_and_shadows guidelines.",
+    "Implement lucide-react for all icon needs, keeping stroke width consistent (default 2px) and size mapped to text hierarchy.",
+    "Never substitute provided media URLs with dummy placehold.it generators. Use the actual Unsplash URLs provided in the media section.",
+    "Ensure the entire app foundation prioritizes generous whitespace (p-6, gap-8) over dense, cluttered lists, matching the 'Premium Ed-Tech' directive."
+  ]
+}

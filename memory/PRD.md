@@ -56,6 +56,23 @@ design-system showcase landing page.
 - ✅ Backend `/api/health`, `/api/`, `/api/status` endpoints + CORS.
 - ✅ Architecture, database, auth, navigation planning docs in `/app/docs/`.
 
+## 5b. Iteration 2 — Class → Stream → Career flow (Feb 2026)
+
+- ✅ Curated India-first seed data: 25 careers, 6 streams, 6 classes,
+  8 categories, 12 scholarships in `backend/data/seed_data.py`.
+- ✅ Backend read-only API: `/api/classes`, `/api/classes/:id`,
+  `/api/streams`, `/api/streams/:slug`, `/api/careers` (with
+  `q`/`category`/`stream`/`class_level` query params),
+  `/api/careers/:slug`, `/api/categories`, `/api/scholarships`.
+- ✅ Lazy idempotent seeding on first read.
+- ✅ React Query hooks in `hooks/useContent.js`.
+- ✅ Pages: `ClassExplorer`, `ClassDetail`, `StreamExplorer`,
+  `StreamDetail`, `CareerLibrary` (search + category filter),
+  `CareerDetail` (salary bands, skills, related streams).
+- ✅ Navbar Classes / Streams / Careers items now enabled.
+- ✅ `EMERGENT_LLM_KEY` added to backend `.env` for future AI Mentor.
+- ✅ Tested 100% backend + 100% frontend (`iteration_2.json`).
+
 ## 6. Prioritized backlog (post-foundation)
 
 ### P0 — Discovery core

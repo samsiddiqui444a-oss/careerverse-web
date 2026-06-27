@@ -8,7 +8,7 @@ export const PRIMARY_NAV = [
     { id: "careers", label: "Careers", href: ROUTES.careers, enabled: true },
     { id: "dna", label: "Career DNA", href: ROUTES.careerDna, enabled: false },
     { id: "mentor", label: "AI Mentor", href: ROUTES.aiMentor, enabled: false },
-    { id: "scholarships", label: "Scholarships", href: ROUTES.scholarships, enabled: false },
+    { id: "scholarships", label: "Scholarships", href: ROUTES.scholarships, enabled: true },
 ];
 
 // Grouped footer link map.

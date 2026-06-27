@@ -1,0 +1,30 @@
+{
+  "summary": "Iteration 3 testing for Career DNA Test feature + regressions. Backend smoke (health 0.2.0, careers 25, scholarships 12, categories 8) all pass. Frontend Career DNA quiz works end-to-end: page loads, q1->q10 advances correctly, back button appears from q2+, results screen shows top 3 categories with scores, 6 career recommendations rendered with Technology bias (AI/ML Engineer, Cybersecurity Analyst, Data Scientist, Software Engineer, Game Developer, Entrepreneur/Founder), restart returns to q1. Navbar 'Career DNA' link enabled. Regressions: /scholarships renders 12 cards and Undergrad filter shrinks to 7. /careers, /streams, /classes navigate fine.",
+  "tested_scope": ["frontend", "backend", "integration"],
+  "passed": [
+    "GET /api/health returns version 0.2.0",
+    "GET /api/careers returns 25",
+    "GET /api/scholarships returns 12",
+    "GET /api/categories returns 8",
+    "/career-dna renders with data-testid=career-dna-page",
+    "Clicking dna-option-q1-a advances to q2 (~300ms)",
+    "Picking 'a' for all 10 questions reaches dna-results screen",
+    "dna-top-cat-0/1/2 visible with category names and points (Technology 15, Business & Finance 6, Core Engineering 5)",
+    "6 career recommendations rendered with data-testid=dna-recommended-{slug} linking to /careers/:slug (includes Data Scientist, AI/ML Engineer, Software Engineer)",
+    "dna-restart-btn resets to question 1",
+    "dna-back-btn appears from q2 onward and returns to previous question",
+    "dna-back-btn correctly NOT shown on q1",
+    "Navbar 'Career DNA' link present and routes to /career-dna",
+    "/scholarships renders 12 cards; Undergrad filter shrinks to 7",
+    "/careers, /streams, /classes pages navigate correctly"
+  ],
+  "failed": [],
+  "notes": [
+    "Review request mentioned testid 'dna-recommended-career-pathfinder-135' but actual implementation (and intended) is 'dna-recommended-{slug}'. The 'career-pathfinder-135' looks like a deployment slug confusion. Functionality is correct.",
+    "Auth UI and AI Mentor remain DEFERRED with 'Soon' badge as instructed — not flagged."
+  ],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}

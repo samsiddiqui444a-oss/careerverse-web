@@ -11,6 +11,7 @@ import StreamDetail from "@/pages/StreamDetail";
 import CareerLibrary from "@/pages/CareerLibrary";
 import CareerDetail from "@/pages/CareerDetail";
 import ScholarshipExplorer from "@/pages/ScholarshipExplorer";
+import CareerDna from "@/pages/CareerDna";
 import { ROUTES } from "@/constants/routes";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                             <Route path={ROUTES.careers} element={<CareerLibrary />} />
                             <Route path="/careers/:slug" element={<CareerDetail />} />
                             <Route path={ROUTES.scholarships} element={<ScholarshipExplorer />} />
+                            <Route path={ROUTES.careerDna} element={<CareerDna />} />
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>

@@ -20,51 +20,72 @@ client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(
+    title="CareerVerse API",
+    description="Foundation API for the CareerVerse career guidance platform.",
+    version="0.1.0",
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
 
-# Define Models
+# ---- Foundation models -----------------------------------------------------
 class StatusCheck(BaseModel):
-    model_config = ConfigDict(extra="ignore")  # Ignore MongoDB's _id field
-    
+    model_config = ConfigDict(extra="ignore")
+
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
+
 class StatusCheckCreate(BaseModel):
     client_name: str
 
-# Add your routes to the router instead of directly to app
+
+class HealthResponse(BaseModel):
+    status: str
+    service: str
+    version: str
+    timestamp: datetime
+
+
+# ---- Foundation routes -----------------------------------------------------
 @api_router.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {
+        "message": "CareerVerse API · foundation",
+        "version": "0.1.0",
+    }
+
+
+@api_router.get("/health", response_model=HealthResponse)
+async def health():
+    return HealthResponse(
+        status="ok",
+        service="careerverse-api",
+        version="0.1.0",
+        timestamp=datetime.now(timezone.utc),
+    )
+
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.model_dump()
-    status_obj = StatusCheck(**status_dict)
-    
-    # Convert to dict and serialize datetime to ISO string for MongoDB
+    status_obj = StatusCheck(**input.model_dump())
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    
     _ = await db.status_checks.insert_one(doc)
     return status_obj
 
+
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
-    # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
-    
-    # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
         if isinstance(check['timestamp'], str):
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
-    
     return status_checks
+
 
 # Include the router in the main app
 app.include_router(api_router)
@@ -83,6 +104,7 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
+
 
 @app.on_event("shutdown")
 async def shutdown_db_client():

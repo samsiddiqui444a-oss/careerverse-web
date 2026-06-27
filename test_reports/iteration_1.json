@@ -1,0 +1,26 @@
+{
+  "summary": "Foundation iteration smoke test for CareerVerse. Backend health/root/status endpoints verified via curl on public URL. Frontend landing showcase verified with Playwright: navbar, theme toggle + localStorage persistence, all 12 color swatches, 6 button variants, ClassCard/StreamCard/CareerCard/SkillCard examples, 8 showcase sections, FAQ accordion, footer groups, mobile menu, and 404 route. All documentation files (ARCHITECTURE, DATABASE, AUTH, NAVIGATION, PRD) exist.",
+  "tested_scope": ["backend", "frontend", "integration"],
+  "passed": [
+    "GET /api/health -> 200 {status:ok, service:careerverse-api, version:0.1.0, timestamp}",
+    "GET /api/ -> 200 with version 0.1.0",
+    "POST /api/status {client_name:qa} -> 200 with id+timestamp",
+    "GET /api/status -> 200 returns list containing qa entry",
+    "Navbar: logo 'CareerVerse', theme toggle, 6 'Soon' nav items",
+    "Theme toggle adds 'dark' class to html and persists under localStorage key 'careerverse:theme'",
+    "All 8 showcase sections render (hero, color-palette, typography, buttons, cards, forms, states, faq)",
+    "All 12 color swatches render with correct data-testids",
+    "All 6 button variants (primary, secondary, ai, discovery, ghost, destructive)",
+    "ClassCard (9,10,12,UG), StreamCard (science/commerce/humanities), CareerCard (DS, UX, Clinical Psych), SkillCard (python)",
+    "FAQ accordion item 0 opens on click (aria-expanded=true), items 1 & 2 exist",
+    "Footer renders all 4 groups (product, resources, account, company)",
+    "Mobile menu toggle reveals navbar-mobile-menu at 390px viewport",
+    "404 route renders not-found-home-link",
+    "Docs exist: ARCHITECTURE.md, DATABASE.md, AUTH.md, NAVIGATION.md, /app/memory/PRD.md"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true
+}

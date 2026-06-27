@@ -1,0 +1,31 @@
+{
+  "summary": "Comprehensive QA sweep across CareerVerse: 6/6 backend endpoints (health, classes, streams, careers, scholarships, categories) return 200 with content. All 9 frontend routes load cleanly. Zero console errors, zero console warnings, zero page errors across all visited pages on both desktop (1365x768) and mobile (375x812). Theme toggle works AND persists across reload. Class/Stream/Career navigation flows all route correctly (e.g., /classes/8 shows documented 'No streams' helper, /classes/11 shows Science+Commerce streams, /streams renders 6 cards). Career library renders search input, 'All' + 7 category chips, and cards with AVG. SALARY / GROWTH visible (confirmed via screenshot). Career detail page (/careers/data-scientist) shows salary, skills. DNA quiz options clickable and results render. 404 page renders with working 'back to home' link. No horizontal overflow on any page at 375px width. Mobile hamburger menu button present.",
+  "tested_scope": ["frontend", "backend", "integration"],
+  "passed": [
+    "GET /api/health -> 200",
+    "GET /api/classes -> 200 (688 bytes)",
+    "GET /api/streams -> 200 (1067 bytes)",
+    "GET /api/careers -> 200 (10813 bytes)",
+    "GET /api/scholarships -> 200 (3326 bytes)",
+    "GET /api/categories -> 200 (565 bytes)",
+    "Landing / loads, FAQ accordion clickable, theme toggle light->dark persists across reload",
+    "/classes renders 6 class cards, all anchor to /classes/{id}",
+    "/classes/8 shows 'No streams' helper text (documented behavior)",
+    "/classes/11 shows Science + Commerce streams",
+    "/streams renders 6 stream cards, click navigates to /streams/science-pcm",
+    "/careers renders search input + All chip + 7 category chips + career cards with AVG. SALARY + GROWTH",
+    "/careers/data-scientist career detail page loads with skills/back link",
+    "/scholarships renders multiple scholarship cards",
+    "/career-dna quiz loads, options clickable, results render",
+    "/random-non-route-xyz shows NotFound, 'back to home' link returns to /",
+    "Mobile 375x812: no horizontal overflow on /, /classes, /streams, /careers, /scholarships, /career-dna",
+    "Mobile hamburger menu button present in navbar",
+    "0 console errors, 0 console warnings, 0 uncaught page errors across entire sweep"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true,
+  "notes": "Sign in / Get started in navbar route to /login & /register which fall through to NotFound — this is documented deferred behavior (auth UI not yet built) and NotFound renders correctly. Footer links are visual-only spans per documented state; did not crash. No real defects discovered in this QA pass."
+}

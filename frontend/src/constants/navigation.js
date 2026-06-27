@@ -7,7 +7,7 @@ export const PRIMARY_NAV = [
     { id: "streams", label: "Streams", href: ROUTES.streams, enabled: true },
     { id: "careers", label: "Careers", href: ROUTES.careers, enabled: true },
     { id: "dna", label: "Career DNA", href: ROUTES.careerDna, enabled: true },
-    { id: "mentor", label: "AI Mentor", href: ROUTES.aiMentor, enabled: false },
+    { id: "mentor", label: "AI Mentor", href: ROUTES.aiMentor, enabled: true },
     { id: "scholarships", label: "Scholarships", href: ROUTES.scholarships, enabled: true },
 ];
 

@@ -72,6 +72,12 @@ export function Navbar() {
                 <div className="flex items-center gap-2">
                     {auth?.status === "authed" && auth.user ? (
                         <>
+                            {auth.user.role === "admin" && (
+                                <Link to={ROUTES.admin} data-testid="navbar-admin-link"
+                                    className="cv-focus hidden md:inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-2 text-sm font-medium hover:bg-secondary">
+                                    Admin
+                                </Link>
+                            )}
                             <span data-testid="navbar-user-name" className="hidden md:inline text-sm font-medium text-foreground/90">
                                 Hi, {auth.user.name.split(" ")[0]}
                             </span>

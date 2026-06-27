@@ -1,0 +1,20 @@
+// data-testid registry for the Admin Panel
+export const ADMIN = {
+    page: "admin-page",
+    accessDenied: "admin-access-denied",
+    statsCard: (k) => `admin-stat-${k}`,
+    search: "admin-search",
+    refresh: "admin-refresh",
+    table: "admin-users-table",
+    emptyRow: "admin-empty-row",
+    userRow: (id) => `admin-user-row-${id}`,
+    userViewBtn: (id) => `admin-user-view-${id}`,
+    userBanBtn: (id) => `admin-user-ban-${id}`,
+    userDeleteBtn: (id) => `admin-user-delete-${id}`,
+    drawer: "admin-user-drawer",
+    drawerClose: "admin-user-drawer-close",
+    drawerEmail: "admin-detail-email",
+    drawerActivity: "admin-detail-activity",
+    includeDeletedToggle: "admin-include-deleted",
+    error: "admin-error",
+};

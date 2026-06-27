@@ -3,3 +3,4 @@ export * from "./home";
 export * from "./landing";
 export * from "./content";
 export * from "./mentor";
+export * from "./admin";

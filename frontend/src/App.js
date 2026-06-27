@@ -14,6 +14,7 @@ import CareerDetail from "@/pages/CareerDetail";
 import ScholarshipExplorer from "@/pages/ScholarshipExplorer";
 import CareerDna from "@/pages/CareerDna";
 import AiMentor from "@/pages/AiMentor";
+import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { ROUTES } from "@/constants/routes";
@@ -36,6 +37,7 @@ function App() {
                                 <Route path={ROUTES.scholarships} element={<ScholarshipExplorer />} />
                                 <Route path={ROUTES.careerDna} element={<CareerDna />} />
                                 <Route path={ROUTES.aiMentor} element={<AiMentor />} />
+                                <Route path={ROUTES.admin} element={<Admin />} />
                                 <Route path={ROUTES.login} element={<Login />} />
                                 <Route path={ROUTES.register} element={<Register />} />
                                 <Route path="*" element={<NotFound />} />

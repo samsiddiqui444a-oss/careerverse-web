@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import sys
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List
@@ -12,28 +13,26 @@ from datetime import datetime, timezone
 
 
 ROOT_DIR = Path(__file__).parent
+sys.path.insert(0, str(ROOT_DIR))
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
+from routers.content import build_router as build_content_router  # noqa: E402
+
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
 
-# Create the main app without a prefix
 app = FastAPI(
     title="CareerVerse API",
-    description="Foundation API for the CareerVerse career guidance platform.",
-    version="0.1.0",
+    description="Read-only content API for the CareerVerse career guidance platform.",
+    version="0.2.0",
 )
 
-# Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
 
-# ---- Foundation models -----------------------------------------------------
 class StatusCheck(BaseModel):
     model_config = ConfigDict(extra="ignore")
-
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
@@ -50,21 +49,15 @@ class HealthResponse(BaseModel):
     timestamp: datetime
 
 
-# ---- Foundation routes -----------------------------------------------------
 @api_router.get("/")
 async def root():
-    return {
-        "message": "CareerVerse API · foundation",
-        "version": "0.1.0",
-    }
+    return {"message": "CareerVerse API · content", "version": "0.2.0"}
 
 
 @api_router.get("/health", response_model=HealthResponse)
 async def health():
     return HealthResponse(
-        status="ok",
-        service="careerverse-api",
-        version="0.1.0",
+        status="ok", service="careerverse-api", version="0.2.0",
         timestamp=datetime.now(timezone.utc),
     )
 
@@ -74,7 +67,7 @@ async def create_status_check(input: StatusCheckCreate):
     status_obj = StatusCheck(**input.model_dump())
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
-    _ = await db.status_checks.insert_one(doc)
+    await db.status_checks.insert_one(doc)
     return status_obj
 
 
@@ -87,7 +80,7 @@ async def get_status_checks():
     return status_checks
 
 
-# Include the router in the main app
+api_router.include_router(build_content_router(db))
 app.include_router(api_router)
 
 app.add_middleware(
@@ -98,7 +91,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'

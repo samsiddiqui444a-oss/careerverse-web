@@ -41,21 +41,30 @@ export function Navbar() {
                 </Link>
 
                 <nav className="hidden items-center gap-1 md:flex">
-                    {PRIMARY_NAV.map((item) => (
-                        <span
-                            key={item.id}
-                            data-testid={NAV.primaryItem(item.id)}
-                            className="cv-focus group relative inline-flex cursor-default items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                            aria-disabled={!item.enabled}
-                        >
-                            {item.label}
-                            {!item.enabled && (
+                    {PRIMARY_NAV.map((item) =>
+                        item.enabled ? (
+                            <Link
+                                key={item.id}
+                                to={item.href}
+                                data-testid={NAV.primaryItem(item.id)}
+                                className="cv-focus inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:bg-secondary hover:text-foreground"
+                            >
+                                {item.label}
+                            </Link>
+                        ) : (
+                            <span
+                                key={item.id}
+                                data-testid={NAV.primaryItem(item.id)}
+                                className="group relative inline-flex cursor-default items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-muted-foreground"
+                                aria-disabled
+                            >
+                                {item.label}
                                 <span className="rounded-full bg-secondary px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                                     Soon
                                 </span>
-                            )}
-                        </span>
-                    ))}
+                            </span>
+                        ),
+                    )}
                 </nav>
 
                 <div className="flex items-center gap-2">

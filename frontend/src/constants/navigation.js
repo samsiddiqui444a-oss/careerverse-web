@@ -3,9 +3,9 @@ import { ROUTES } from "./routes";
 // Primary navbar items. Each item maps to a future page that is not yet built.
 // `enabled: false` items render as disabled with a "Coming soon" badge.
 export const PRIMARY_NAV = [
-    { id: "explore", label: "Explore", href: ROUTES.classes, enabled: false },
-    { id: "streams", label: "Streams", href: ROUTES.streams, enabled: false },
-    { id: "careers", label: "Careers", href: ROUTES.careers, enabled: false },
+    { id: "explore", label: "Classes", href: ROUTES.classes, enabled: true },
+    { id: "streams", label: "Streams", href: ROUTES.streams, enabled: true },
+    { id: "careers", label: "Careers", href: ROUTES.careers, enabled: true },
     { id: "dna", label: "Career DNA", href: ROUTES.careerDna, enabled: false },
     { id: "mentor", label: "AI Mentor", href: ROUTES.aiMentor, enabled: false },
     { id: "scholarships", label: "Scholarships", href: ROUTES.scholarships, enabled: false },

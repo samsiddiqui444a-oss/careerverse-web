@@ -1,0 +1,30 @@
+{
+  "summary": "Iteration 2 (Class -> Stream -> Career flow) tested end-to-end. All 13 backend endpoints behave correctly with India-specific seed data; all 7 frontend flows render and interact correctly. No blockers.",
+  "tested_scope": ["backend", "frontend", "integration"],
+  "passed": [
+    "GET /api/health returns version 0.2.0",
+    "GET /api/classes -> 6 entries with levels [8,9,10,11,12,UG]",
+    "GET /api/classes/10 -> class + streams=[] (expected, 10 has no mapped streams)",
+    "GET /api/classes/11 -> class + 5 streams (science-pcm, science-pcb, commerce, humanities, hybrid)",
+    "GET /api/streams -> 6 streams (incl. ug-foundation)",
+    "GET /api/streams/commerce -> 8 careers, includes Chartered Accountant",
+    "GET /api/careers -> 25 careers",
+    "GET /api/careers?q=data -> returns Data Scientist",
+    "GET /api/careers?category=tech -> 5 Technology careers (Data Scientist, Software Engineer, AI/ML Engineer, Game Developer, Cybersecurity Analyst)",
+    "GET /api/careers/data-scientist -> career + category.name='Technology' + 2 streams",
+    "GET /api/careers/nonexistent -> 404",
+    "GET /api/categories -> 8 categories (tech, design, health, biz, law, media, edu, engg)",
+    "GET /api/scholarships -> 12 scholarships",
+    "Frontend /classes: class-explorer-page renders with 6 class-card-link-{8,9,10,11,12,UG}; clicking class 11 navigates to /classes/11 and shows all 5 streams (PCM, PCB, Commerce, Humanities, Hybrid)",
+    "Frontend /streams: stream-explorer-page renders",
+    "Frontend /careers: career-library-page renders, 25 unique career cards, search 'data' narrows to Data Scientist, 'xyznotreal' shows career-library-empty empty state, category=tech filter shows 5 Technology careers and excludes Chartered Accountant",
+    "Frontend /careers/data-scientist: career-detail-page renders with career-detail-title 'Data Scientist', salary bands (LPA visible), required skills (Python visible)",
+    "Navbar: Classes / Streams / Careers nav items enabled (no Soon badge); Career DNA, AI Mentor, Scholarships still show SOON as expected"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true,
+  "notes": "Auth UI deferred this iteration per scope. 'Sign in' / 'Get started' header buttons not exercised. Test selectors initially over-counted career cards (50 vs 25) because the testid prefix career-card matches multiple nested elements per card; verified by math across search/filter results - all functional counts are correct."
+}
